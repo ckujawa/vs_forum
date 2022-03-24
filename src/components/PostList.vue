@@ -25,14 +25,12 @@
 
 <script>
 import dataSrc from '@/data.json'
-import BaseDate from '@/components/BaseDate'
 
 export default {
   name: 'PostList',
   props: {
     posts: { type: Array, required: true }
   },
-  components: { BaseDate },
   data() {
     return {
       users: dataSrc.users

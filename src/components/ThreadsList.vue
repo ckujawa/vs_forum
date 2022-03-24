@@ -34,11 +34,9 @@
 
 <script>
 import dataSrc from '@/data.json'
-import BaseDate from '@/components/BaseDate'
 
 export default {
   name: 'ThreadsList',
-  components: { BaseDate },
   props: {
     threads: {
       type: Array,
