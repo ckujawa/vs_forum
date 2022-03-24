@@ -1,31 +1,27 @@
 <template>
-  <div class="col-large push-top">
-    <h1>{{thread.title}}</h1>
-    <div class="post-list" >
-      <div class="post" v-for="postId in thread.posts" :key="postId">
-        <div class="user-info">
-          <a href="#" class="user-name">{{findUserForPost(postId).name}}</a>
-          <a href="#">
-            <img :src="findUserForPost(postId).avatar" alt="" class="avatar-large">
-          </a>
-          <p class="desktop-only text-small">107 posts</p>
-        </div>
-
-        <div class="post-content">
-          <div>
-            <p>{{findPostById(postId).text}}</p>
-          </div>
-        </div>
-
-        <div class="post-date text-faded">
-          <div>
-            <p>{{findPostById(postId).publishedAt}}</p>
-          </div>
-        </div>
-
+  <div class="post-list" >
+    <div class="post" v-for="post in posts" :key="post.id">
+      <div class="user-info">
+        <a href="#" class="user-name">{{findUserForPost(post.userId).name}}</a>
+        <a href="#">
+          <img :src="findUserForPost(post.userId).avatar" alt="" class="avatar-large">
+        </a>
+        <p class="desktop-only text-small">107 posts</p>
       </div>
-    </div>
 
+      <div class="post-content">
+        <div>
+          <p>{{post.text}}</p>
+        </div>
+      </div>
+
+      <div class="post-date text-faded">
+        <div>
+          <p>{{post.publishedAt}}</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -33,31 +29,18 @@
 import dataSrc from '@/data.json'
 
 export default {
-  name: 'PageThreadShow',
+  name: 'PostList',
   props: {
-    id: {
-      type: String,
-      required: true
-    }
+    posts: { type: Array, required: true }
   },
-  data () {
+  data() {
     return {
-      threads: dataSrc.threads,
-      posts: dataSrc.posts,
       users: dataSrc.users
     }
   },
   methods: {
-    findPostById (postId) {
-      return this.posts.find(p => p.id === postId)
-    },
-    findUserForPost (postId) {
-      return this.users.find(u => u.id === this.findPostById(postId).userId)
-    }
-  },
-  computed: {
-    thread () {
-      return this.threads.find(thread => thread.id === this.id) // also available under this.$route.params.id
+    findUserForPost (userId) {
+      return this.users.find(u => u.id === userId)
     }
   }
 }

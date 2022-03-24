@@ -1,52 +1,18 @@
 <template>
-  <div class="col-large push-top" v-for="thread in threads" :key="thread.id">
-    <h1>{{thread.title}}</h1>
-      <div class="post-list" >
-        <div class="post" v-for="postId in thread.posts" :key="postId">
-          <div class="user-info">
-            <a href="#" class="user-name">{{findUserForPost(postId).name}}</a>
-            <a href="#">
-              <img :src="findUserForPost(postId).avatar" alt="" class="avatar-large">
-            </a>
-            <p class="desktop-only text-small">107 posts</p>
-          </div>
-
-          <div class="post-content">
-            <div>
-              <p>{{findPostById(postId).text}}</p>
-            </div>
-          </div>
-
-          <div class="post-date text-faded">
-            <div>
-              <p>{{findPostById(postId).publishedAt}}</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-  </div>
+  <h1>Welcome to the Forum</h1>
+  <ThreadsList :threads="threads"/>
 </template>
 
 <script>
+import ThreadsList from '@/components/ThreadsList'
 import dataSrc from '@/data.json'
 
 export default {
   name: 'PageHome',
+  components: { ThreadsList },
   data () {
     return {
-      threads: dataSrc.threads,
-      posts: dataSrc.posts,
-      users: dataSrc.users
-    }
-  },
-  methods: {
-    findPostById (postId) {
-      return this.posts.find(p => p.id === postId)
-    },
-    findUserForPost (postId) {
-      return this.users.find(u => u.id === this.findPostById(postId).userId)
+      threads: dataSrc.threads
     }
   }
 }
