@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import dataSrc from '@/data.json'
 import PostList from '@/components/PostList'
 import PostEditor from '@/components/PostEditor'
 
@@ -24,9 +23,9 @@ export default {
   },
   data () {
     return {
-      threads: dataSrc.threads,
-      posts: dataSrc.posts,
-      users: dataSrc.users
+      threads: this.$store.state.threads,
+      posts: this.$store.state.posts,
+      users: this.$store.state.users
     }
   },
   computed: {

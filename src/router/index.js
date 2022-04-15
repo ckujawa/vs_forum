@@ -4,6 +4,7 @@ import ThreadShow from '@/pages/ThreadShow'
 import NotFound from '@/pages/NotFound'
 import dataSource from '@/data.json'
 import Forum from '@/pages/Forum'
+import Category from '@/pages/Category'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -12,6 +13,25 @@ const routes = [
     name: 'Forum',
     component: Forum,
     props: true
+  },
+  {
+    path: '/category/:id',
+    name: 'Category',
+    component: Category,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      const categoryExists = dataSource.categories.find(category => category.id === to.params.id)
+      if (categoryExists) {
+        return next()
+      } else {
+        next({
+          name: NotFound,
+          params: { pathMatch: to.path.substring(1).split('/') },
+          query: to.query,
+          hash: to.hash
+        })
+      }
+    }
   },
   {
     path: '/thread/:id',

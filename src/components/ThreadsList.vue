@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import dataSrc from '@/data.json'
 
 export default {
   name: 'ThreadsList',
@@ -45,8 +44,8 @@ export default {
   },
   data () {
     return {
-      posts: dataSrc.posts,
-      users: dataSrc.users
+      posts: this.$store.state.posts,
+      users: this.$store.state.users
     }
   },
   methods: {

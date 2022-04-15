@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import dataSrc from '@/data.json'
 
 export default {
   name: 'PostList',
@@ -33,7 +32,7 @@ export default {
   },
   data() {
     return {
-      users: dataSrc.users
+      users: this.$store.state.users
     }
   },
   methods: {

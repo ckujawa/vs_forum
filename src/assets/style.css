@@ -74,6 +74,7 @@ figcaption {
     padding: 0;
     background: white;
     margin: 20px 0;
+    width: 100%;
 }
 
 .forum-list .forum-listing {

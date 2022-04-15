@@ -1,19 +1,17 @@
 <template>
   <h1>Welcome to the Forum</h1>
-  <ForumList :forums="forums"/>
+  <CategoryList v-for="category in categories" :category="category" :key="category.id"/>
 </template>
 
 <script>
-import ForumList from '@/components/ForumList'
-
-import dataSrc from '@/data.json'
+import CategoryList from '@/components/CategoryList'
 
 export default {
   name: 'PageHome',
-  components: { ForumList },
-  data () {
-    return {
-      forums: dataSrc.forums
+  components: { CategoryList },
+  computed: {
+    categories() {
+      return this.$store.state.categories
     }
   }
 }
