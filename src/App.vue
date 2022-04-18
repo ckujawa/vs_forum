@@ -1,15 +1,16 @@
 <template>
+  <the-navbar/>
   <div class="container">
-    <div>
-      <img alt="Vue logo" src="./assets/logo.png" />
-    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
+import TheNavbar from '@/components/TheNavbar'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: { TheNavbar }
 }
 </script>
 
@@ -21,6 +22,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
